@@ -107,6 +107,36 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>jarjar-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jarjar</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>org.apache.poi:poi</include>
+                                <include>org.apache.poi:poi-ooxml</include>
+                                <include>org.apache.poi:poi-ooxml-schemas</include>
+                                <include>org.apache.commons:commons-lang3</include>
+                            </includes>
+                            <rules>
+                                <rule>
+                                    <pattern>org.apache.poi.**</pattern>
+                                    <result>bad.robot.apache.poi.@1</result>
+                                </rule>
+                                <rule>
+                                    <pattern>org.apache.commons.**</pattern>
+                                    <result>bad.robot.apache.commons.@1</result>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.14.1</version>
