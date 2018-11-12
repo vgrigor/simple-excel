@@ -27,6 +27,9 @@ import static org.apache.poi.ss.usermodel.Cell.CELL_TYPE_FORMULA;
 
 public class FormulaCell extends StyledCell {
 
+    /**
+     * some commenty
+     */
     private final String formula;
 
     public FormulaCell(String formula) {
